@@ -1,0 +1,24 @@
+{
+  "name": "@workerspy/core",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:studio:local": "LOCAL_DB_PATH=$(find ../proxy/.wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print -quit) drizzle-kit studio",
+    "db:studio:prod": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.36.1",
+    "nanoid": "^5.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "better-sqlite3": "^11.5.0",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.28.0"
+  }
+}

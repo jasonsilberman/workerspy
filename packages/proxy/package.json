@@ -1,0 +1,24 @@
+{
+  "name": "@workerspy/proxy",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types",
+    "db:migrate:local": "wrangler d1 migrations apply workerspy-proxy-db --local",
+    "db:migrate:prod": "wrangler d1 migrations apply workerspy-proxy-db --remote"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241022.0",
+    "@types/node": "^22.9.0",
+    "@workerspy/core": "workspace:*",
+    "better-sqlite3": "^11.5.0",
+    "dotenv": "^16.4.5",
+    "wrangler": "^3.83.0"
+  }
+}

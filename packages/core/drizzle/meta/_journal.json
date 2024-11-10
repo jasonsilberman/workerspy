@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1731195802537,
+      "tag": "0000_organic_tomas",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1731197659852,
+      "tag": "0001_optimal_mikhail_rasputin",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1731198060444,
+      "tag": "0002_romantic_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1731199701847,
+      "tag": "0003_wooden_sage",
+      "breakpoints": true
+    }
+  ]
+}

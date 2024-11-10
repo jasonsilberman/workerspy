@@ -1,0 +1,16 @@
+{
+  "name": "workerspy",
+  "version": "0.0.0",
+  "scripts": {
+    "typecheck": "pnpm run -r typecheck",
+    "dev": "pnpm run -r dev",
+    "db:generate": "pnpm run --filter='@workerspy/core' db:generate"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  }
+}
