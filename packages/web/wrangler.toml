@@ -1,17 +1,16 @@
-name = "workerspy-web-remix"
+name = "workerspy-web"
 compatibility_date = "2024-11-09"
 
 compatibility_flags = [ "nodejs_compat" ]
 
+pages_build_output_dir = "./build/client"
+
 [vars]
 PROXY_HOST_ROOT = "proxy.workerspy.dev"
+API_HOST = "api.workerspy.dev"
 
 [[d1_databases]]
 binding = "PROXY_DB"
 database_name = "workerspy-proxy-db"
 database_id = "354d010b-977d-4565-a0a1-bd77d44e99c4"
 migrations_dir = "../core/drizzle"
-
-# [observability]
-# enabled = true
-# head_sampling_rate = 1

@@ -4,9 +4,14 @@
   "scripts": {
     "typecheck": "pnpm run -r typecheck",
     "dev": "pnpm run -r dev",
-    "db:generate": "pnpm run --filter='@workerspy/core' db:generate"
+    "db:generate": "pnpm run --filter='@workerspy/core' db:generate",
+    "db:migrate:local": "pnpm run --filter='@workerspy/worker' db:migrate:local",
+    "db:migrate:prod": "pnpm run --filter='@workerspy/worker' db:migrate:prod",
+    "db:studio:local": "pnpm run --filter='@workerspy/core' db:studio:local",
+    "check": "biome check --write ."
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@tsconfig/node20": "^20.1.4",
     "typescript": "^5.6.3"
   },

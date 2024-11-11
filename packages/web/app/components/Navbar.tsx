@@ -1,13 +1,18 @@
 import { Link } from "@remix-run/react";
 
-export function Navbar() {
-	return (
-		<nav className="border-b">
-			<div className="container mx-auto px-4 py-4">
-				<Link to="/" className="text-2xl font-bold">
-					Workerspy
-				</Link>
-			</div>
-		</nav>
-	);
+interface NavbarProps {
+  children?: React.ReactNode;
+}
+
+export function Navbar({ children }: NavbarProps) {
+  return (
+    <header className="font-serif border-b-2 border-black bg-white">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between max-w-2xl">
+        <Link to="/" className="text-xl font-bold">
+          WorkerSpy
+        </Link>
+        <div>{children}</div>
+      </div>
+    </header>
+  );
 }

@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "e03f768a-c43a-40ee-89a5-23f4e703757e",
+  "id": "b1f303e3-0af9-4d32-8bc6-c710ccfcfe33",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "proxies": {
@@ -16,6 +16,13 @@
         },
         "target": {
           "name": "target",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "token": {
+          "name": "token",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -103,9 +110,23 @@
           "notNull": true,
           "autoincrement": false
         },
+        "requestBodyType": {
+          "name": "requestBodyType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "requestBodyRaw": {
           "name": "requestBodyRaw",
           "type": "blob",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "requestBodyText": {
+          "name": "requestBodyText",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -131,9 +152,23 @@
           "notNull": true,
           "autoincrement": false
         },
+        "responseBodyType": {
+          "name": "responseBodyType",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "responseBodyRaw": {
           "name": "responseBodyRaw",
           "type": "blob",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "responseBodyText": {
+          "name": "responseBodyText",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -175,12 +210,8 @@
           "name": "requests_proxyId_proxies_id_fk",
           "tableFrom": "requests",
           "tableTo": "proxies",
-          "columnsFrom": [
-            "proxyId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["proxyId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

@@ -1,5 +1,5 @@
 {
-  "name": "@workerspy/proxy",
+  "name": "@workerspy/worker",
   "sideEffects": false,
   "type": "module",
   "scripts": {
@@ -19,6 +19,6 @@
     "@workerspy/core": "workspace:*",
     "better-sqlite3": "^11.5.0",
     "dotenv": "^16.4.5",
-    "wrangler": "^3.83.0"
+    "wrangler": "^3.86.1"
   }
 }

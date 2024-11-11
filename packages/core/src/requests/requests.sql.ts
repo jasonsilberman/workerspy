@@ -1,5 +1,6 @@
 import { blob, int, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { timestamps } from "../db/utils";
 import { proxiesTable } from "../proxies/proxies.sql";
 
@@ -45,3 +46,6 @@ export const requestsTable = sqliteTable("requests", {
 
 export type SelectRequest = typeof requestsTable.$inferSelect;
 export type InsertRequest = typeof requestsTable.$inferInsert;
+
+export const selectRequestSchema = createSelectSchema(requestsTable);
+export const insertRequestSchema = createInsertSchema(requestsTable);

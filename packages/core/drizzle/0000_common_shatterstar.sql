@@ -1,6 +1,7 @@
 CREATE TABLE `proxies` (
 	`id` text PRIMARY KEY NOT NULL,
 	`target` text NOT NULL,
+	`token` text NOT NULL,
 	`updatedAt` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`createdAt` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`deletedAt` text
@@ -14,11 +15,15 @@ CREATE TABLE `requests` (
 	`durationMs` integer NOT NULL,
 	`requestMethod` text NOT NULL,
 	`requestHeaders` text NOT NULL,
+	`requestBodyType` text NOT NULL,
 	`requestBodyRaw` blob,
+	`requestBodyText` text,
 	`requestBodyJson` text,
 	`responseStatus` integer NOT NULL,
 	`responseHeaders` text NOT NULL,
+	`responseBodyType` text NOT NULL,
 	`responseBodyRaw` blob,
+	`responseBodyText` text,
 	`responseBodyJson` text,
 	`updatedAt` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	`createdAt` text DEFAULT CURRENT_TIMESTAMP NOT NULL,
