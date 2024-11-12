@@ -74,17 +74,7 @@ export default function Index() {
           <h2 className="text-2xl mb-2">Supported features</h2>
           <p>
             All HTTP methods and content types should be supported. If your API
-            can handle it, the proxy should be able to handle it. If not, feel
-            free to submit a{" "}
-            <a
-              href="https://github.com/jasonsilberman/workerspy"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Pull Request
-            </a>
-            .
+            can handle it, the proxy should be able to handle it.
           </p>
         </div>
 
