@@ -14,3 +14,7 @@ binding = "PROXY_DB"
 database_name = "workerspy-proxy-db"
 database_id = "354d010b-977d-4565-a0a1-bd77d44e99c4"
 migrations_dir = "../core/drizzle"
+
+[observability]
+enabled = true
+head_sampling_rate = 1
