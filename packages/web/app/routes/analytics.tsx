@@ -8,18 +8,22 @@ export async function loader({ context }: LoaderFunctionArgs) {
     token: context.cloudflare.env.ANALYTICS_ACCOUNT_TOKEN,
   };
 
-  const analytics = await Analytics.getAll(auth, "workerspy_requests");
+  const durations = await Analytics.getProxyDurationTimeSeries(auth, "n3v5rv");
+  const statusCodes = await Analytics.getProxyStatusCodeTimeSeries(
+    auth,
+    "n3v5rv",
+  );
 
-  return { analytics };
+  return { durations, statusCodes };
 }
 
 export default function AnalyticsRoute() {
-  const { analytics } = useLoaderData<typeof loader>();
+  const data = useLoaderData<typeof loader>();
 
   return (
     <div>
       <h1>Analytics</h1>
-      <pre>{JSON.stringify(analytics, null, 2)}</pre>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import type { LoaderFunctionArgs } from "@remix-run/cloudflare";
 import { redirect, useLoaderData } from "@remix-run/react";
+import { Analytics } from "@workerspy/core/analytics/index";
 import { webSocketIncomingMessageSchema } from "@workerspy/core/api-types";
 import { DbContext, createDb } from "@workerspy/core/db/client";
 import { MAX_REQUESTS_STORED } from "@workerspy/core/proxies/constants";
@@ -11,6 +12,7 @@ import { Proxies } from "@workerspy/core/proxies/index";
 import { Requests } from "@workerspy/core/requests/index";
 import type { SelectRequest } from "@workerspy/core/requests/requests.sql";
 import { Fragment, useMemo } from "react";
+import { AnalyticsCharts } from "~/components/AnalyticsCharts";
 import { Copyable } from "~/components/Copyable";
 import { DaysRemaining } from "~/components/DaysRemaining";
 import { RequestItem } from "~/components/RequestItem";
@@ -25,13 +27,21 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
     throw redirect("/");
   }
 
+  const auth = {
+    accountId: context.cloudflare.env.ACCOUNT_ID,
+    token: context.cloudflare.env.ANALYTICS_ACCOUNT_TOKEN,
+  };
+
   // this is so dumb remix doesn't support some sort of middleware
-  const [proxy, requests] = await DbContext.with(db, () => {
-    return Promise.all([
-      Proxies.getProxy(proxyId, token),
-      Requests.getRequests(proxyId),
-    ]);
-  });
+  const [proxy, requests, durationTimeSeries, statusCodeTimeSeries] =
+    await DbContext.with(db, () => {
+      return Promise.all([
+        Proxies.getProxy(proxyId, token),
+        Requests.getRequests(proxyId),
+        Analytics.getProxyDurationTimeSeries(auth, proxyId),
+        Analytics.getProxyStatusCodeTimeSeries(auth, proxyId),
+      ]);
+    });
 
   if (!proxy) {
     throw redirect("/");
@@ -45,6 +55,8 @@ export async function loader({ context, params }: LoaderFunctionArgs) {
     requests,
     proxyHostRoot,
     apiHost,
+    durationTimeSeries,
+    statusCodeTimeSeries,
   };
 }
 
@@ -113,6 +125,13 @@ export default function ProxyDetailPage() {
             )}
           </div>
         </div>
+
+        {!isDataDeleted && (
+          <AnalyticsCharts
+            durationTimeSeries={data.durationTimeSeries}
+            statusCodeTimeSeries={data.statusCodeTimeSeries}
+          />
+        )}
 
         <div className="space-y-4">
           {isDataDeleted ? (
