@@ -17,17 +17,16 @@ export function getDaysRemaining(
   createdAt: string | Date,
   expiryDays: number,
 ): number {
-  const utcDate = new Date(createdAt);
-  const localCreatedDate = new Date(
-    utcDate.getTime() - utcDate.getTimezoneOffset() * 60000,
-  );
-  const expiryDate = new Date(
-    localCreatedDate.getTime() + expiryDays * 24 * 60 * 60 * 1000,
-  );
+  const utcCreatedDate = new Date(createdAt);
+  utcCreatedDate.setUTCHours(0, 0, 0, 0);
+
+  const expiryDate = new Date(utcCreatedDate);
+  expiryDate.setUTCDate(expiryDate.getUTCDate() + expiryDays);
+
   const now = new Date();
-  const localNow = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  now.setUTCHours(0, 0, 0, 0);
 
   return Math.ceil(
-    (expiryDate.getTime() - localNow.getTime()) / (1000 * 60 * 60 * 24),
+    (expiryDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
   );
 }
