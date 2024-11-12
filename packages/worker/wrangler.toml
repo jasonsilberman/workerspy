@@ -27,6 +27,11 @@ new_classes = ["RequestsWebSocket"]
 binding = "ANALYTICS_ENGINE"
 dataset = "workerspy_requests"
 
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+
 [env.production]
 routes = [
   { pattern = "proxy.workerspy.dev", custom_domain = true },
