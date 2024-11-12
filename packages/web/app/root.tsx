@@ -1,6 +1,7 @@
-import type { LinksFunction } from "@remix-run/cloudflare";
+import type { LinksFunction, MetaFunction } from "@remix-run/cloudflare";
 import {
   Links,
+  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -10,6 +11,34 @@ import {
 import "./tailwind.css";
 
 export const links: LinksFunction = () => [];
+
+export const meta: MetaFunction = () => {
+  const title = "WorkerSpy - Debug HTTP requests with a simple proxy";
+  const description =
+    "Create a proxy endpoint and inspect all incoming requests in real-time. Simple, fast, and effective HTTP debugging tool.";
+  const imageUrl = "https://workerspy.com/og.png";
+
+  return [
+    { title },
+    { name: "description", content: description },
+
+    // Open Graph / Facebook
+    { property: "og:type", content: "website" },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: imageUrl },
+
+    // Twitter
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: imageUrl },
+
+    // Viewport and charset (recommended to keep these)
+    { name: "viewport", content: "width=device-width,initial-scale=1" },
+    { charSet: "utf-8" },
+  ];
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -36,6 +65,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <ScrollRestoration />
         <Scripts />
+        <LiveReload />
       </body>
     </html>
   );
