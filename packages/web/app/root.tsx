@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => {
   const title = "WorkerSpy - Debug HTTP requests with a simple proxy";
   const description =
     "Create a proxy endpoint and inspect all incoming requests in real-time. Simple, fast, and effective HTTP debugging tool.";
-  const imageUrl = "https://workerspy.com/og.png";
+  const imageUrl = "https://workerspy.dev/og.png";
 
   return [
     { title },
