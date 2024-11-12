@@ -1,5 +1,7 @@
+import type { SelectRequest } from "@workerspy/core/requests/requests.sql";
+
 type BodyProps = {
-  type: "none" | "blob" | "text" | "json";
+  type: SelectRequest["requestBodyType"];
   raw: unknown | null;
   text: string | null;
   json: unknown | null;
@@ -34,6 +36,10 @@ export function Body({ type, raw, text, json }: BodyProps) {
         </pre>
       </div>
     );
+  }
+
+  if (type === "error") {
+    return <div className="text-red-500 italic">Error parsing body</div>;
   }
 
   return <div className="text-gray-500 italic">Empty body</div>;

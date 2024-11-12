@@ -61,7 +61,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
         <ScrollRestoration />
         <Scripts />
-        <LiveReload />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { timestamps } from "../db/utils";
 import { proxiesTable } from "../proxies/proxies.sql";
 
-const bodyTypeEnum = ["none", "blob", "text", "json"] as const;
+const bodyTypeEnum = ["none", "blob", "text", "json", "error"] as const;
 
 export const requestsTable = sqliteTable("requests", {
   id: int().primaryKey({ autoIncrement: true }),
