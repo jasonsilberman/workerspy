@@ -33,10 +33,6 @@ export const meta: MetaFunction = () => {
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
     { name: "twitter:image", content: imageUrl },
-
-    // Viewport and charset (recommended to keep these)
-    { name: "viewport", content: "width=device-width,initial-scale=1" },
-    { charSet: "utf-8" },
   ];
 };
 
